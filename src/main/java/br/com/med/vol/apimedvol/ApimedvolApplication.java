@@ -9,5 +9,4 @@ public class ApimedvolApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ApimedvolApplication.class, args);
 	}
-
 }
