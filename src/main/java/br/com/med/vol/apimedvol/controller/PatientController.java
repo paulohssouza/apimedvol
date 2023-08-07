@@ -3,6 +3,7 @@ package br.com.med.vol.apimedvol.controller;
 import br.com.med.vol.apimedvol.model.patient.Patient;
 import br.com.med.vol.apimedvol.model.patient.PatientPublicData;
 import br.com.med.vol.apimedvol.model.patient.PatientRegistrationData;
+import br.com.med.vol.apimedvol.model.patient.PatientUpdateData;
 import br.com.med.vol.apimedvol.repository.PatientRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,20 @@ public class PatientController {
     public Page<PatientPublicData> patientListPublicData(
             @PageableDefault(size = 10, sort = {"name"})Pageable pageable
             ) {
-        return patientRepository.findAll(pageable).map(PatientPublicData::new);
+        return patientRepository.findAllByActiveTrue(pageable).map(PatientPublicData::new);
+    }
+
+    @PutMapping
+    @Transactional
+    public void patientUpdate(@RequestBody @Valid PatientUpdateData patientUpdateData) {
+        var patient = patientRepository.getReferenceById(patientUpdateData.id());
+        patient.updateData(patientUpdateData);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void delete(@PathVariable Long id) {
+        var patient = patientRepository.getReferenceById(id);
+        patient.inactive();
     }
 }

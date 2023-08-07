@@ -22,6 +22,7 @@ public class Patient {
     private String cpf;
     @Embedded
     private Address address;
+    private boolean active;
 
     public Patient(PatientRegistrationData patientRegistrationData) {
         this.name = patientRegistrationData.name();
@@ -29,5 +30,19 @@ public class Patient {
         this.phone = patientRegistrationData.phone();
         this.cpf = patientRegistrationData.cpf();
         this.address = new Address(patientRegistrationData.address());
+        this.active = true;
+    }
+
+    public void updateData(PatientUpdateData patientUpdateData) {
+        if(patientUpdateData.name() != null && !patientUpdateData.name().isEmpty())
+            this.name = patientUpdateData.name();
+        if(patientUpdateData.phone() != null && !patientUpdateData.phone().isEmpty())
+            this.phone = patientUpdateData.phone();
+        if(patientUpdateData.address() != null)
+            this.address.updateData(patientUpdateData.address());
+    }
+
+    public void inactive() {
+        this.active = false;
     }
 }
