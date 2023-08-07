@@ -1,8 +1,8 @@
 package br.com.med.vol.apimedvol.controller;
 
-import br.com.med.vol.apimedvol.patient.Patient;
-import br.com.med.vol.apimedvol.patient.PatientRegistrationData;
-import br.com.med.vol.apimedvol.patient.PatientRepository;
+import br.com.med.vol.apimedvol.model.patient.Patient;
+import br.com.med.vol.apimedvol.model.patient.PatientRegistrationData;
+import br.com.med.vol.apimedvol.model.patient.PatientRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;

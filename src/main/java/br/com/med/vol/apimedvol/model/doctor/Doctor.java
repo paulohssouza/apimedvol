@@ -1,6 +1,6 @@
-package br.com.med.vol.apimedvol.doctor;
+package br.com.med.vol.apimedvol.model.doctor;
 
-import br.com.med.vol.apimedvol.address.Address;
+import br.com.med.vol.apimedvol.model.address.Address;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

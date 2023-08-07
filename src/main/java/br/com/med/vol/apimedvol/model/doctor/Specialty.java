@@ -1,4 +1,4 @@
-package br.com.med.vol.apimedvol.doctor;
+package br.com.med.vol.apimedvol.model.doctor;
 
 public enum Specialty {
     ORTOPEDIA,

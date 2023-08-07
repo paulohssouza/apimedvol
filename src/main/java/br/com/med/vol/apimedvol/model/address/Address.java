@@ -1,4 +1,4 @@
-package br.com.med.vol.apimedvol.address;
+package br.com.med.vol.apimedvol.model.address;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;

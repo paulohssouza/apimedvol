@@ -1,4 +1,4 @@
-package br.com.med.vol.apimedvol.doctor;
+package br.com.med.vol.apimedvol.model.doctor;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

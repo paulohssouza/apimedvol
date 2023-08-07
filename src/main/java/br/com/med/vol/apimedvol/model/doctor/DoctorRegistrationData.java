@@ -1,12 +1,13 @@
-package br.com.med.vol.apimedvol.patient;
+package br.com.med.vol.apimedvol.model.doctor;
 
-import br.com.med.vol.apimedvol.address.AddressData;
+import br.com.med.vol.apimedvol.model.address.AddressData;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
-public record PatientRegistrationData(
+public record DoctorRegistrationData(
         @NotBlank
         String name,
         @NotBlank
@@ -15,8 +16,11 @@ public record PatientRegistrationData(
         @NotBlank
         String phone,
         @NotBlank
-        @Pattern(regexp = "\\d{11}")
-        String cpf,
+        @Pattern(regexp = "\\d{4,6}")
+        String crm,
+        @NotNull
+        Specialty specialty,
+        @NotNull
         @Valid
         AddressData address) {
 }
