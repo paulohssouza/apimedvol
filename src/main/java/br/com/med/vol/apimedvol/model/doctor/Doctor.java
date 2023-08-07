@@ -33,4 +33,13 @@ public class Doctor {
         this.specialty = doctorRegistrationData.specialty();
         this.address = new Address(doctorRegistrationData.address());
     }
+
+    public void updateData(DoctorUpdateData doctorUpdateData) {
+        if(doctorUpdateData.name() != null && !doctorUpdateData.name().isEmpty())
+            this.name = doctorUpdateData.name();
+        if(doctorUpdateData.phone() != null && !doctorUpdateData.phone().isEmpty())
+            this.phone = doctorUpdateData.phone();
+        if(doctorUpdateData.address() != null)
+            this.address.updateData(doctorUpdateData.address());
+    }
 }
