@@ -4,7 +4,7 @@ import br.com.med.vol.apimedvol.model.address.AddressData;
 import jakarta.validation.constraints.NotNull;
 
 public record DoctorUpdateData(
-        @NotNull
+        @NotNull(message = "{id.mandatory}")
         Long id,
         String name,
         String phone,

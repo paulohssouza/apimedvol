@@ -4,16 +4,16 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
 public record AddressData(
-        @NotBlank
+        @NotBlank(message = "{address.mandatory}")
         String address,
-        @NotBlank
+        @NotBlank(message = "{district.mandatory}")
         String district,
-        @NotBlank
-        @Pattern(regexp = "\\d{8}")
+        @NotBlank(message = "{cep.mandatory}")
+        @Pattern(regexp = "\\d{8}", message = "{cep.invalid}")
         String cep,
-        @NotBlank
+        @NotBlank(message = "{city.mandatory}")
         String city,
-        @NotBlank
+        @NotBlank(message = "{uf.mandatory}")
         String uf,
         String number,
         String complement) {

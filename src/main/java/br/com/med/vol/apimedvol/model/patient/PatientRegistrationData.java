@@ -4,19 +4,21 @@ import br.com.med.vol.apimedvol.model.address.AddressData;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
 public record PatientRegistrationData(
-        @NotBlank
+        @NotBlank(message = "{name.mandatory}")
         String name,
-        @NotBlank
-        @Email
+        @NotBlank(message = "{email.mandatory}")
+        @Email(message = "{email.invalid}")
         String email,
-        @NotBlank
+        @NotBlank(message = "{phone.mandatory}")
         String phone,
-        @NotBlank
-        @Pattern(regexp = "\\d{11}")
+        @NotBlank(message = "{cpf.mandatory}")
+        @Pattern(regexp = "\\d{11}", message = "{cpf.invalid}")
         String cpf,
+        @NotNull(message = "{address.mandatory}")
         @Valid
         AddressData address) {
 }
