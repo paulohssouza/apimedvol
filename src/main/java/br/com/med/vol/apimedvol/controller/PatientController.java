@@ -1,5 +1,6 @@
 package br.com.med.vol.apimedvol.controller;
 
+import br.com.med.vol.apimedvol.model.doctor.DoctorDetailedData;
 import br.com.med.vol.apimedvol.model.patient.*;
 import br.com.med.vol.apimedvol.repository.PatientRepository;
 import jakarta.validation.Valid;
@@ -36,6 +37,12 @@ public class PatientController {
             ) {
         var page = patientRepository.findAllByActiveTrue(pageable).map(PatientPublicData::new);
         return ResponseEntity.ok(page);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity destailsPatientData(@PathVariable Long id) {
+        var patient = patientRepository.getReferenceById(id);
+        return ResponseEntity.ok(new DetailedPatientData(patient));
     }
 
     @PutMapping

@@ -2,7 +2,7 @@ package br.com.med.vol.apimedvol.model.doctor;
 
 import br.com.med.vol.apimedvol.model.address.Address;
 
-public record DetailedMedicalData(
+public record DoctorDetailedData(
         Long id,
         String name,
         String email,
@@ -11,7 +11,7 @@ public record DetailedMedicalData(
         Specialty specialty,
         Address address
 ) {
-    public DetailedMedicalData(Doctor doctor) {
+    public DoctorDetailedData(Doctor doctor) {
         this(
                 doctor.getId(),
                 doctor.getName(),
