@@ -1,6 +1,9 @@
 package br.com.med.vol.apimedvol.controller;
 
+import br.com.med.vol.apimedvol.infra.security.TokenJWTData;
+import br.com.med.vol.apimedvol.infra.security.TokenService;
 import br.com.med.vol.apimedvol.model.user.AuthenticationData;
+import br.com.med.vol.apimedvol.model.user.User;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +20,8 @@ public class AuthenticationController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
+    @Autowired
+    private TokenService tokenService;
 
     @PostMapping
     public ResponseEntity login(
@@ -24,8 +29,9 @@ public class AuthenticationController {
             @Valid
             AuthenticationData authenticationData)
     {
-        var token = new UsernamePasswordAuthenticationToken(authenticationData.login(), authenticationData.password());
-        var authentication = authenticationManager.authenticate(token);
-        return ResponseEntity.ok().build();
+        var authenticationToken = new UsernamePasswordAuthenticationToken(authenticationData.login(), authenticationData.password());
+        var authentication = authenticationManager.authenticate(authenticationToken);
+        var tokenJWT = tokenService.generateToken((User)authentication.getPrincipal());
+        return ResponseEntity.ok(new TokenJWTData(tokenJWT));
     }
 }
