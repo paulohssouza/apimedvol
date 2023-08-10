@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@Table(name = "consultations")
+@Table(name = "consultation")
 @Entity(name = "Consultation")
 @Getter
 @NoArgsConstructor
@@ -27,4 +27,10 @@ public class Consultation {
     @JoinColumn(name = "id_patient")
     private Patient patient;
     private LocalDateTime dateTime;
+    @Column(name = "reason")
+    private Reason reason;
+
+    public void cancel(Reason reason) {
+        this.reason = reason;
+    }
 }

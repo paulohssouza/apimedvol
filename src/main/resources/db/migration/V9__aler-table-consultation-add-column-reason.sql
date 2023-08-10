@@ -1,0 +1,1 @@
+alter table consultation add column reason varchar(100);

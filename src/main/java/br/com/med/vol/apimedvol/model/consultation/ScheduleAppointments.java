@@ -27,8 +27,16 @@ public class ScheduleAppointments {
 
         var doctor = selectDoctor(schedulingConsultationData);
         var patient = patientRepository.getReferenceById(schedulingConsultationData.patientID());
-        var consultation = new Consultation(null, doctor, patient, schedulingConsultationData.dateTime());
+        var consultation = new Consultation(null, doctor, patient, schedulingConsultationData.dateTime(), null);
         consultationRepository.save(consultation);
+    }
+
+    public void cancel(CancelConsultationData cancelConsultationData) {
+        if(!consultationRepository.existsById(cancelConsultationData.consultationID())) {
+            throw new ValidationException("Não existe consulta agendada com este ID");
+        }
+        var consultation = consultationRepository.getReferenceById(cancelConsultationData.consultationID());
+        consultation.cancel(cancelConsultationData.reason());
     }
 
     private Doctor selectDoctor(SchedulingConsultationData schedulingConsultationData) {
