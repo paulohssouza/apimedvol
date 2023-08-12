@@ -1,12 +1,15 @@
 package br.com.med.vol.apimedvol.model.consultation;
 
 import br.com.med.vol.apimedvol.model.ValidationException;
+import br.com.med.vol.apimedvol.model.consultation.validation.ValidatorAppointmentScheduling;
 import br.com.med.vol.apimedvol.model.doctor.Doctor;
 import br.com.med.vol.apimedvol.repository.ConsultationRepository;
 import br.com.med.vol.apimedvol.repository.DoctorRepository;
 import br.com.med.vol.apimedvol.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ScheduleAppointments {
@@ -16,6 +19,8 @@ public class ScheduleAppointments {
     private DoctorRepository doctorRepository;
     @Autowired
     private PatientRepository patientRepository;
+    @Autowired
+    private List<ValidatorAppointmentScheduling> validator;
     public void schedule(SchedulingConsultationData schedulingConsultationData){
         if(!patientRepository.existsById(schedulingConsultationData.patientID())) {
             throw new ValidationException("Id do paciente informado não existe.");
@@ -24,6 +29,8 @@ public class ScheduleAppointments {
                 !doctorRepository.existsById(schedulingConsultationData.doctorID())) {
             throw new ValidationException("Id do médico informado não existe.");
         }
+
+        validator.forEach(validate -> validate.validate(schedulingConsultationData));
 
         var doctor = selectDoctor(schedulingConsultationData);
         var patient = patientRepository.getReferenceById(schedulingConsultationData.patientID());
