@@ -12,9 +12,9 @@ public class PatientWithoutConsultationOnDay implements ValidatorAppointmentSche
     private ConsultationRepository consultationRepository;
 
     public void validate(SchedulingConsultationData schedulingConsultationData) {
-        var firstHour = schedulingConsultationData.dateTime().withHour(7);
-        var lastHour = schedulingConsultationData.dateTime().withHour(18);
-        var patientHasConsultation = consultationRepository.existsByPatientIdAndDataBetween(
+        var firstHour = schedulingConsultationData.date().withHour(7);
+        var lastHour = schedulingConsultationData.date().withHour(18);
+        var patientHasConsultation = consultationRepository.existsByPatientIdAndDateBetween(
                 schedulingConsultationData.patientID(), firstHour, lastHour);
         if(patientHasConsultation) {
             throw new ValidationException("Paciente já possui uma consulta agendada neste dia.");

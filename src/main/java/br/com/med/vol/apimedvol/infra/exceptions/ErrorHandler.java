@@ -1,5 +1,6 @@
 package br.com.med.vol.apimedvol.infra.exceptions;
 
+import br.com.med.vol.apimedvol.model.ValidationException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -20,6 +21,12 @@ public class ErrorHandler {
         var errors = methodArgumentNotValidException.getFieldErrors();
         return ResponseEntity.badRequest().body(errors.stream().map(DataErrorValidation::new).toList());
     }
+
+    @ExceptionHandler(ValidationException.class)
+    public ResponseEntity exceptionValidationConsultation(ValidationException validationException) {
+        return ResponseEntity.badRequest().body(validationException.getMessage());
+    }
+
 
     private record DataErrorValidation( String field, String message) {
         public DataErrorValidation(FieldError fieldError) {

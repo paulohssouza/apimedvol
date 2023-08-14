@@ -21,7 +21,7 @@ public class ScheduleAppointments {
     private PatientRepository patientRepository;
     @Autowired
     private List<ValidatorAppointmentScheduling> validator;
-    public void schedule(SchedulingConsultationData schedulingConsultationData){
+    public DetailingMedicalConsultationData schedule(SchedulingConsultationData schedulingConsultationData){
         if(!patientRepository.existsById(schedulingConsultationData.patientID())) {
             throw new ValidationException("Id do paciente informado não existe.");
         }
@@ -34,8 +34,10 @@ public class ScheduleAppointments {
 
         var doctor = selectDoctor(schedulingConsultationData);
         var patient = patientRepository.getReferenceById(schedulingConsultationData.patientID());
-        var consultation = new Consultation(null, doctor, patient, schedulingConsultationData.dateTime(), null);
+        var consultation = new Consultation(null, doctor, patient, schedulingConsultationData.date(), null);
         consultationRepository.save(consultation);
+
+        return new DetailingMedicalConsultationData(consultation);
     }
 
     public void cancel(CancelConsultationData cancelConsultationData) {
@@ -54,6 +56,6 @@ public class ScheduleAppointments {
             throw new ValidationException("Especialidade é obrigatória quando médico não for escolhido.");
         }
         return doctorRepository.chooseFreeRandomDoctor(schedulingConsultationData.specialty(),
-                schedulingConsultationData.dateTime());
+                schedulingConsultationData.date());
     }
 }

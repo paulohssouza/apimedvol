@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class ValidatorTime implements ValidatorAppointmentScheduling{
 
     public void validate(SchedulingConsultationData consultationData) {
-        var consultationDate = consultationData.dateTime();
+        var consultationDate = consultationData.date();
         var now = LocalDateTime.now();
         var diferenceTime = Duration.between(now, consultationDate).toMinutes();
 

@@ -12,8 +12,8 @@ public class ValidatorConsultationConflict implements ValidatorAppointmentSchedu
     private ConsultationRepository consultationRepository;
 
     public void validate(SchedulingConsultationData schedulingConsultationData) {
-        var doctorHasConsultation = consultationRepository.existsBYDoctorIdAndData
-                (schedulingConsultationData.doctorID(), schedulingConsultationData.dateTime());
+        var doctorHasConsultation = consultationRepository.existsByDoctorIdAndDate
+                (schedulingConsultationData.doctorID(), schedulingConsultationData.date());
         if(doctorHasConsultation) {
             throw new ValidationException("Médico já possui consulta agendada nesse mesmo horário");
         }

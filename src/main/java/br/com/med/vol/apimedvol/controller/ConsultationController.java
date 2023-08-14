@@ -18,9 +18,9 @@ public class ConsultationController {
     @PostMapping
     @Transactional
     public ResponseEntity scheduleConsultation(@RequestBody @Valid SchedulingConsultationData schedulingAppointmentData) {
-        scheduleAppointments.schedule(schedulingAppointmentData);
+        var consultatioDetailedDTO = scheduleAppointments.schedule(schedulingAppointmentData);
         System.out.println(schedulingAppointmentData);
-        return ResponseEntity.ok(new DetailingMedicalConsultationData(null, null, null, null));
+        return ResponseEntity.ok(consultatioDetailedDTO);
     }
 
     @DeleteMapping

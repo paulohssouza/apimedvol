@@ -26,7 +26,8 @@ public class Consultation {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_patient")
     private Patient patient;
-    private LocalDateTime dateTime;
+    @Column(name = "date")
+    private LocalDateTime date;
     @Column(name = "reason")
     private Reason reason;
 

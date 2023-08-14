@@ -11,7 +11,7 @@ import java.time.DayOfWeek;
 public class ValidatorHoursOfOperation implements ValidatorAppointmentScheduling{
 
     public void validate(SchedulingConsultationData schedulingConsultationData) {
-        var consultationDate = schedulingConsultationData.dateTime();
+        var consultationDate = schedulingConsultationData.date();
         var sunday = consultationDate.getDayOfWeek().equals(DayOfWeek.SUNDAY);
         var beforeOpen = consultationDate.getHour() < 7;
         var afterClose = consultationDate.getHour() > 18;

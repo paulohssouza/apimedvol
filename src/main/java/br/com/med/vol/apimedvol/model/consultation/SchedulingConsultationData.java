@@ -12,7 +12,7 @@ public record SchedulingConsultationData(
         Long patientID,
         @NotNull
         @Future
-        LocalDateTime dateTime,
+        LocalDateTime date,
         Specialty specialty
 ) {
 }
