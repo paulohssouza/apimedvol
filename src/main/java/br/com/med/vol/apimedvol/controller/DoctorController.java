@@ -2,6 +2,7 @@ package br.com.med.vol.apimedvol.controller;
 
 import br.com.med.vol.apimedvol.model.doctor.*;
 import br.com.med.vol.apimedvol.repository.DoctorRepository;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,6 +15,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/doctor")
+@SecurityRequirement(name = "bearer-key")
 public class DoctorController {
     @Autowired
     private DoctorRepository doctorRepository;

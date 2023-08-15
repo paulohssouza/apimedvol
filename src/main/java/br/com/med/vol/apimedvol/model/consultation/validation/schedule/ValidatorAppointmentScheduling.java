@@ -1,4 +1,4 @@
-package br.com.med.vol.apimedvol.model.consultation.validation;
+package br.com.med.vol.apimedvol.model.consultation.validation.schedule;
 
 import br.com.med.vol.apimedvol.model.consultation.SchedulingConsultationData;
 

@@ -6,7 +6,7 @@ public record DetailingMedicalConsultationData(
      Long id,
      Long doctorID,
      Long patientID,
-     LocalDateTime dateTime
+     LocalDateTime date
 ) {
     public DetailingMedicalConsultationData(Consultation consultation) {
         this(

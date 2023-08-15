@@ -3,6 +3,7 @@ package br.com.med.vol.apimedvol.controller;
 import br.com.med.vol.apimedvol.model.doctor.DoctorDetailedData;
 import br.com.med.vol.apimedvol.model.patient.*;
 import br.com.med.vol.apimedvol.repository.PatientRepository;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,6 +16,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/patient")
+@SecurityRequirement(name = "bearer-key")
 public class PatientController {
     @Autowired
     PatientRepository patientRepository;

@@ -30,8 +30,11 @@ public class Consultation {
     private LocalDateTime date;
     @Column(name = "reason")
     private Reason reason;
+    @Column(name = "status")
+    private StatusConsultation statusConsultation;
 
     public void cancel(Reason reason) {
         this.reason = reason;
+        this.statusConsultation = StatusConsultation.CANCELADO;
     }
 }

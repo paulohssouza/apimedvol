@@ -1,4 +1,4 @@
-package br.com.med.vol.apimedvol.model.consultation.validation;
+package br.com.med.vol.apimedvol.model.consultation.validation.schedule;
 
 import br.com.med.vol.apimedvol.model.ValidationException;
 import br.com.med.vol.apimedvol.model.consultation.SchedulingConsultationData;
@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ValidatorActivePatient implements ValidatorAppointmentScheduling{
+public class ValidatorActivePatient implements ValidatorAppointmentScheduling {
     @Autowired
     private PatientRepository patientRepository;
 

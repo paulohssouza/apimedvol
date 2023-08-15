@@ -1,14 +1,14 @@
-package br.com.med.vol.apimedvol.model.consultation.validation;
+package br.com.med.vol.apimedvol.model.consultation.validation.schedule;
 
 import br.com.med.vol.apimedvol.model.ValidationException;
 import br.com.med.vol.apimedvol.model.consultation.SchedulingConsultationData;
-import org.springframework.beans.factory.annotation.Autowired;
+import br.com.med.vol.apimedvol.model.consultation.validation.schedule.ValidatorAppointmentScheduling;
 import org.springframework.stereotype.Component;
 
 import java.time.DayOfWeek;
 
 @Component
-public class ValidatorHoursOfOperation implements ValidatorAppointmentScheduling{
+public class ValidatorHoursOfOperation implements ValidatorAppointmentScheduling {
 
     public void validate(SchedulingConsultationData schedulingConsultationData) {
         var consultationDate = schedulingConsultationData.date();
