@@ -3,10 +3,7 @@ package br.com.med.vol.apimedvol.model.consultation;
 import br.com.med.vol.apimedvol.model.doctor.Doctor;
 import br.com.med.vol.apimedvol.model.patient.Patient;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -16,6 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@ToString
 public class Consultation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
